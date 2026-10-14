@@ -16,29 +16,28 @@ Predicts wine prices using Python, Scikit-learn and Pandas. The project cleans a
 6. **Evaluation:** compares models with MAE, MSE and RMSE and selects the one with the lowest RMSE.
 
 ## Setup and run (Windows)
-
-1. Put `wine_price_prediction.py` in a folder, for example `E:\wine price`.
-2. Open a terminal in that folder.
-3. Install the libraries (first time only):
-   ```
+How to run
+Put the dataset CSV files and the code in the same folder. Dataset: Wine Rating and Price (Kaggle). Your folder should look like this:
+   wine-project/
+      wine_price_prediction.py
+      Red.csv
+      White.csv
+      Rose.csv
+      Sparkling.csv
+Open a terminal in that folder and install the libraries (first time only):
    pip install kagglehub pandas scikit-learn matplotlib numpy
-   ```
-4. Run the script:
-   ```
+Run the code:
    python wine_price_prediction.py
-   ```
+Output
 
-If the automatic download fails, download the dataset from Kaggle, unzip it, and place `Red.csv`, `White.csv`, `Rose.csv` and `Sparkling.csv` in the same folder as the script. Then run it again.
+The results are saved in the same folder:
 
-## Output
+eda_plots.png - exploratory plots
+model_comparison.png - MAE, MSE and RMSE for each model
+actual_vs_predicted.png - predictions from the best model
+model_results.csv - metrics table
+Tech stack
 
-Saved in the same folder as the script:
+Python, Pandas, NumPy, Scikit-learn, Matplotlib
 
-- `eda_plots.png`: exploratory plots
-- `model_comparison.png`: MAE, MSE and RMSE for each model
-- `actual_vs_predicted.png`: predictions from the best model
-- `model_results.csv`: the metrics table
 
-## Tech stack
-
-Python, Pandas, NumPy, Scikit-learn, Matplotlib, kagglehub
