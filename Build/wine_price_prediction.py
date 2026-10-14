@@ -32,10 +32,7 @@ RANDOM_STATE = 42
 TOP_N = 25  # keep the top N categories per categorical column
 HERE = os.path.dirname(os.path.abspath(__file__))
 
-
-# ----------------------------------------------------------------------
 # 1. LOAD DATA
-# ----------------------------------------------------------------------
 def find_data_folder():
     """Try kagglehub first, then fall back to the script's own folder."""
     try:
@@ -71,10 +68,7 @@ df = load_wine_files(find_data_folder())
 print("\nColumns found:", list(df.columns))
 print("Raw shape:", df.shape)
 
-
-# ----------------------------------------------------------------------
 # 2. DATA PREPROCESSING
-# ----------------------------------------------------------------------
 print("\nMissing values per column:\n", df.isnull().sum())
 
 df = df.drop_duplicates()
@@ -98,10 +92,7 @@ df["numberofratings"] = pd.to_numeric(df["numberofratings"], errors="coerce").fi
 
 print("Shape after cleaning:", df.shape)
 
-
-# ----------------------------------------------------------------------
 # 3. FEATURE ENGINEERING
-# ----------------------------------------------------------------------
 # Year can be a number or "N.V." (non-vintage)
 year_raw = df["year"] if "year" in df.columns else pd.Series(np.nan, index=df.index)
 df["is_non_vintage"] = year_raw.astype(str).str.upper().str.contains("N.V").astype(int)
@@ -123,10 +114,7 @@ categorical_features = ["country", "region", "winery", "wine_type"]
 X = df[numeric_features + categorical_features]
 y = df["price"]
 
-
-# ----------------------------------------------------------------------
 # 4. EXPLORATORY DATA ANALYSIS (plots saved as PNG files)
-# ----------------------------------------------------------------------
 print("\nPrice summary:\n", df["price"].describe())
 
 fig, axes = plt.subplots(2, 2, figsize=(14, 10))
@@ -158,10 +146,7 @@ plt.savefig(os.path.join(HERE, "eda_plots.png"), dpi=120)
 plt.close()
 print("Saved EDA plots to eda_plots.png")
 
-
-# ----------------------------------------------------------------------
 # 5. TRAIN / TEST SPLIT
-# ----------------------------------------------------------------------
 X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.2, random_state=RANDOM_STATE
 )
@@ -173,10 +158,7 @@ preprocessor = ColumnTransformer(
     ]
 )
 
-
-# ----------------------------------------------------------------------
 # 6. TRAIN AND EVALUATE MODELS
-# ----------------------------------------------------------------------
 models = {
     "Linear Regression": LinearRegression(),
     "Decision Tree": DecisionTreeRegressor(max_depth=10, random_state=RANDOM_STATE),
@@ -200,10 +182,7 @@ for name, model in models.items():
     rmse = np.sqrt(mse)
     results.append({"Model": name, "MAE": mae, "MSE": mse, "RMSE": rmse})
 
-
-# ----------------------------------------------------------------------
 # 7. COMPARE MODELS
-# ----------------------------------------------------------------------
 results_df = pd.DataFrame(results).set_index("Model").round(2)
 print("\n===== MODEL COMPARISON =====")
 print(results_df)
