@@ -1,2 +1,44 @@
-# Wine-Price-Prediction
-Predicted wine prices from Vivino data using Python, Scikit-learn and Pandas. Cleaned the data, engineered features, and compared Linear Regression, Decision Tree and Random Forest using MAE, MSE and RMSE to pick the best model.
+# Wine Price Prediction
+
+Predicts wine prices using Python, Scikit-learn and Pandas. The project cleans a real-world dataset, engineers features, runs exploratory analysis, and compares three regression models using MAE, MSE and RMSE to pick the most accurate one.
+
+## Dataset
+
+[Wine Rating and Price](https://www.kaggle.com/datasets/budnyak/wine-rating-and-price) from Kaggle (Vivino data). It has separate files for Red, White, Rose and Sparkling wines with name, country, region, winery, rating, number of ratings, price and year.
+
+## What the script does
+
+1. **Load data:** downloads the dataset with `kagglehub` and combines all wine files.
+2. **Preprocess:** removes duplicates and missing values, and drops the top 1% of prices as outliers.
+3. **Feature engineering:** wine age, non-vintage flag, log of number of ratings, name length, and wine type. Rare countries, regions and wineries are grouped into "Other".
+4. **EDA:** price distribution, rating vs price, average price by country, correlation heatmap.
+5. **Models:** Linear Regression, Decision Tree, Random Forest.
+6. **Evaluation:** compares models with MAE, MSE and RMSE and selects the one with the lowest RMSE.
+
+## Setup and run (Windows)
+
+1. Put `wine_price_prediction.py` in a folder, for example `E:\wine price`.
+2. Open a terminal in that folder.
+3. Install the libraries (first time only):
+   ```
+   pip install kagglehub pandas scikit-learn matplotlib numpy
+   ```
+4. Run the script:
+   ```
+   python wine_price_prediction.py
+   ```
+
+If the automatic download fails, download the dataset from Kaggle, unzip it, and place `Red.csv`, `White.csv`, `Rose.csv` and `Sparkling.csv` in the same folder as the script. Then run it again.
+
+## Output
+
+Saved in the same folder as the script:
+
+- `eda_plots.png`: exploratory plots
+- `model_comparison.png`: MAE, MSE and RMSE for each model
+- `actual_vs_predicted.png`: predictions from the best model
+- `model_results.csv`: the metrics table
+
+## Tech stack
+
+Python, Pandas, NumPy, Scikit-learn, Matplotlib, kagglehub
