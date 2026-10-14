@@ -17,6 +17,7 @@ Predicts wine prices using Python, Scikit-learn and Pandas. The project cleans a
 
 ## Setup and run (Windows)
 How to run
+
 Put the dataset CSV files and the code in the same folder. Dataset: Wine Rating and Price (Kaggle). Your folder should look like this:
    wine-project/
       wine_price_prediction.py
@@ -24,6 +25,7 @@ Put the dataset CSV files and the code in the same folder. Dataset: Wine Rating 
       White.csv
       Rose.csv
       Sparkling.csv
+      
 Open a terminal in that folder and install the libraries (first time only):
    pip install kagglehub pandas scikit-learn matplotlib numpy
 Run the code:
